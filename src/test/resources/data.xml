@@ -1,0 +1,24 @@
+<dataset>
+    <Horse id_horse="1" name="That Darn Gray Cat"/>
+    <Horse id_horse="2" name="Fort Utopia"/>
+    <Horse id_horse="3" name="Count Sheep"/>
+    <Horse id_horse="4" name="Ms Traitour"/>
+    <Horse id_horse="5" name="Real Princess"/>
+    <Horse id_horse="6" name="Pa Kettle"/>
+    <Horse id_horse="7" name="Gin Stinger"/>
+
+    <Money id="1" nominal="1" quantity="10"/>
+    <Money id="2" nominal="5" quantity="10"/>
+    <Money id="3" nominal="10" quantity="10"/>
+    <Money id="4" nominal="20" quantity="10"/>
+    <Money id="5" nominal="100" quantity="10"/>
+
+    <Bet id_bet="1" value="5" id_horse="1"/>
+    <Bet id_bet="2" value="10" id_horse="2"/>
+    <Bet id_bet="3" value="9" id_horse="3"/>
+    <Bet id_bet="4" value="4" id_horse="4"/>
+    <Bet id_bet="5" value="3" id_horse="5"/>
+    <Bet id_bet="6" value="5" id_horse="6"/>
+    <Bet id_bet="7" value="6" id_horse="7"/>
+
+</dataset>
