@@ -33,11 +33,11 @@ public class Monitor implements CommandLineRunner {
 
             input = inputService.apply(input);
 
-            if (!input.isError()) {
-                outputService.printBaseInfo();
-            } else {
+            if (input.isError())
                 outputService.printError(input);
-            }
+            else
+                outputService.printBaseInfo();
+
 
             input = scanner.getNextUserInput();
         }

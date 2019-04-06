@@ -31,8 +31,7 @@ public class ConsoleScanner {
     public ConsoleCommandsDTO getNextUserInput() {
 
         String sourceValue = scanner.nextLine();
-        String input = Optional.ofNullable(sourceValue)
-                .map(String::toUpperCase).orElse("");
+        String input = Optional.ofNullable(sourceValue).map(String::toUpperCase).orElse("");
 
 
         if (command.isQuit(input)) {

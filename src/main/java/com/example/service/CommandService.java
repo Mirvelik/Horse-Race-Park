@@ -14,21 +14,13 @@ public class CommandService {
 
     public boolean isSetWinHorse(String userInput) {
         String[] split = userInput.split(" ");
-        if (split.length == 2 && "W".equals(split[0]) && isInteger(split[1])) {
-            return true;
-        }
-
-        return false;
+        return split.length == 2 && "W".equals(split[0]) && isInteger(split[1]);
     }
 
     public boolean isSetBetOnHorse(String userInput) {
         String[] split = userInput.split(" ");
+        return split.length == 2 && isNumeric(split[0]) && isNumeric(split[1]);
 
-        if (split.length == 2 && isNumeric(split[0]) && isNumeric(split[1])) {
-            return true;
-        }
-
-        return false;
     }
 
     public boolean isQuit(String userInput) {
