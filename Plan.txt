@@ -1,0 +1,4 @@
+1. refactor Readme file
+2. write tests
+3. make project work (H2 problem)
+4. refactor the code
