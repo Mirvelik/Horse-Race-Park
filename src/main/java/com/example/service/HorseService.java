@@ -40,7 +40,7 @@ public class HorseService {
 
 
     private Horse setWinHorse(Integer horseId) {
-        Horse winner = horseRepository.findOne(horseId);
+        Horse winner = horseRepository.getOne(horseId);
 
         if (winner == null) { //horse not found
             throw new IllegalArgumentException(INVALID_HORSE_NUMBER);

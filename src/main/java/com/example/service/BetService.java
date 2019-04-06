@@ -30,7 +30,7 @@ public class BetService {
 
     @Transactional
     public Bet addBet(Integer horseId, Integer value) {
-        Horse horse = horseRepository.findOne(horseId);
+        Horse horse = horseRepository.getOne(horseId);
 
         if (horse == null) {
             return null;
