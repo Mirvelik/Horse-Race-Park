@@ -1,9 +1,8 @@
-package com.example.service.horse;
+package com.example.service;
 
 import com.example.dto.ConsoleCommandsDTO;
 import com.example.entity.Horse;
 import com.example.repository.HorseRepository;
-import com.example.service.money.MoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,19 +12,18 @@ import static org.hibernate.Hibernate.initialize;
 
 @Service
 @Transactional
-public class HorseServiceImpl implements HorseService {
+public class HorseService {
 
     private final HorseRepository horseRepository;
     private final MoneyService moneyService;
 
     @Autowired
-    public HorseServiceImpl(HorseRepository horseRepository, MoneyService moneyService) {
+    public HorseService(HorseRepository horseRepository, MoneyService moneyService) {
         this.horseRepository = horseRepository;
         this.moneyService = moneyService;
     }
 
     @Transactional
-    @Override
     public ConsoleCommandsDTO setNewWinner(ConsoleCommandsDTO input) {
 
         try {

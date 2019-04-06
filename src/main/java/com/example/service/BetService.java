@@ -1,4 +1,4 @@
-package com.example.service.bet;
+package com.example.service;
 
 import com.example.dto.PayingDTO;
 import com.example.entity.Bet;
@@ -15,21 +15,20 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
-public class BetServiceImpl implements BetService {
+public class BetService {
 
     private final HorseRepository horseRepository;
     private final BetRepository betRepository;
     private final MoneyRepository moneyRepository;
 
     @Autowired
-    public BetServiceImpl(HorseRepository horseRepository, BetRepository betRepository, MoneyRepository moneyRepository) {
+    public BetService(HorseRepository horseRepository, BetRepository betRepository, MoneyRepository moneyRepository) {
         this.horseRepository = horseRepository;
         this.betRepository = betRepository;
         this.moneyRepository = moneyRepository;
     }
 
     @Transactional
-    @Override
     public Bet addBet(Integer horseId, Integer value) {
         Horse horse = horseRepository.findOne(horseId);
 
@@ -46,7 +45,6 @@ public class BetServiceImpl implements BetService {
     }
 
     @Transactional
-    @Override
     public PayingDTO payByBet(Bet bet) {
         Integer mustPaySum = bet.getValue() * bet.getHorse().getOdds();
 

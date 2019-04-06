@@ -1,11 +1,8 @@
-package com.example.service.input;
+package com.example.service;
 
 import com.example.common.InputType;
 import com.example.dto.ConsoleCommandsDTO;
 import com.example.entity.Bet;
-import com.example.service.bet.BetService;
-import com.example.service.horse.HorseService;
-import com.example.service.money.MoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +10,7 @@ import static com.example.common.MessagesOfErrors.INVALID_HORSE_NUMBER;
 import static com.example.common.MessagesOfErrors.UNEXPECTED_ERROR;
 
 @Service
-public class InputServiceImpl implements InputService {
+public class InputService {
 
     private final MoneyService moneyService;
     private final HorseService horseService;
@@ -21,13 +18,12 @@ public class InputServiceImpl implements InputService {
 
 
     @Autowired
-    public InputServiceImpl(MoneyService moneyService, HorseService horseService, BetService betService) {
+    public InputService(MoneyService moneyService, HorseService horseService, BetService betService) {
         this.moneyService = moneyService;
         this.horseService = horseService;
         this.betService = betService;
     }
 
-    @Override
     public ConsoleCommandsDTO apply(ConsoleCommandsDTO input) {
         if (input.isError()) {
             return input;
@@ -65,6 +61,4 @@ public class InputServiceImpl implements InputService {
         input.setErrorMsg(UNEXPECTED_ERROR);
         return input;
     }
-
-
 }

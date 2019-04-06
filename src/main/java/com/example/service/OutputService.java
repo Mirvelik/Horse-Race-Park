@@ -1,4 +1,4 @@
-package com.example.service.output;
+package com.example.service;
 
 import com.example.dto.ConsoleCommandsDTO;
 import com.example.dto.PayingDTO;
@@ -13,19 +13,18 @@ import java.util.Map;
 import static com.example.common.Messages.*;
 
 @Service
-public class OutputServiceImpl implements OutputService {
+public class OutputService {
 
     private final HorseRepository horseRepository;
     private final MoneyRepository moneyRepository;
 
     @Autowired
-    public OutputServiceImpl(HorseRepository horseRepository, MoneyRepository moneyRepository) {
+    public OutputService(HorseRepository horseRepository, MoneyRepository moneyRepository) {
         this.horseRepository = horseRepository;
         this.moneyRepository = moneyRepository;
     }
 
 
-    @Override
     public void printBaseInfo() {
         System.out.println(INVENTORY_LINE);
         moneyRepository.findAll().forEach(System.out::println);
@@ -34,13 +33,11 @@ public class OutputServiceImpl implements OutputService {
         horseRepository.findAll().forEach(System.out::println);
     }
 
-    @Override
     public void printError(ConsoleCommandsDTO input) {
         System.out.println(input.getErrorMsg() + input.getFirstArgument());
     }
 
 
-    @Override
     public void printPayingIsSuccess(PayingDTO payingDTO) {
         System.out.println(PAYOUT + payingDTO.getHorseName() + "," + DOLLAR + payingDTO.getTotalSum());
         System.out.println(DISPENSING_LINE);
@@ -52,12 +49,10 @@ public class OutputServiceImpl implements OutputService {
         }
     }
 
-    @Override
     public void printPayingIsFail(PayingDTO payingDTO) {
         System.out.println(INSUFFICIENT_FUNDS + DOLLAR + payingDTO.getTotalSum());
     }
 
-    @Override
     public void printNoPayout(Horse horse) {
         System.out.println(NO_PAYOUT + horse.getName());
     }

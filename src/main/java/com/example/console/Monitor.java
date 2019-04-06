@@ -3,8 +3,8 @@ package com.example.console;
 
 import com.example.common.InputType;
 import com.example.dto.ConsoleCommandsDTO;
-import com.example.service.input.InputService;
-import com.example.service.output.OutputService;
+import com.example.service.InputService;
+import com.example.service.OutputService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

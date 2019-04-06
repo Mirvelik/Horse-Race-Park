@@ -2,7 +2,7 @@ package com.example.console;
 
 import com.example.common.InputType;
 import com.example.dto.ConsoleCommandsDTO;
-import com.example.service.command.CommandService;
+import com.example.service.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
