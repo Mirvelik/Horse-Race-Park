@@ -1,15 +1,12 @@
 package com.example.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
+//@Data
 @Entity
-@Getter
-@Setter
-public class Bet {
+public class Bet implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BET_SEQ")
@@ -24,4 +21,31 @@ public class Bet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_horse")
     private Horse horse;
+
+    public Bet() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    public Horse getHorse() {
+        return horse;
+    }
+
+    public void setHorse(Horse horse) {
+        this.horse = horse;
+    }
 }

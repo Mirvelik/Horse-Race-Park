@@ -1,12 +1,9 @@
 package com.example.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.Map;
 
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class PayingDTO {
 
     private boolean isSuccess;
@@ -22,5 +19,37 @@ public class PayingDTO {
         this.horseName = horseName;
 
         this.isSuccess = true;
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+
+    public String getHorseName() {
+        return horseName;
+    }
+
+    public void setHorseName(String horseName) {
+        this.horseName = horseName;
+    }
+
+    public int getTotalSum() {
+        return totalSum;
+    }
+
+    public void setTotalSum(int totalSum) {
+        this.totalSum = totalSum;
+    }
+
+    public Map<Integer, Integer> getBills() {
+        return bills;
+    }
+
+    public void setBills(Map<Integer, Integer> bills) {
+        this.bills = bills;
     }
 }
