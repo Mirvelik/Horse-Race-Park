@@ -25,7 +25,7 @@ public class Monitor implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        outputService.printContent();
+        outputService.printWelcomeInfo();
         processUserInput(scanner.getNextUserInput());
     }
 

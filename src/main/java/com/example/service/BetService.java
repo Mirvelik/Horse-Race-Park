@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.dto.ConsoleCommandsDTO;
 import com.example.dto.PayingDTO;
 import com.example.entity.Bet;
 import com.example.entity.Horse;
@@ -14,27 +15,39 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.example.common.MessagesOfErrors.INVALID_HORSE_NUMBER;
+
 @Service
 public class BetService {
 
     private final HorseRepository horseRepository;
     private final BetRepository betRepository;
     private final MoneyRepository moneyRepository;
+    private final MoneyService moneyService;
 
     @Autowired
-    public BetService(HorseRepository horseRepository, BetRepository betRepository, MoneyRepository moneyRepository) {
+    public BetService(HorseRepository horseRepository, BetRepository betRepository, MoneyRepository moneyRepository, MoneyService moneyService) {
         this.horseRepository = horseRepository;
         this.betRepository = betRepository;
         this.moneyRepository = moneyRepository;
+        this.moneyService = moneyService;
     }
 
-    @Transactional
-    public Bet addBet(Integer horseId, Integer value) {
-        Horse horse = horseRepository.getOne(horseId);
 
-        if (horse == null) {
-            return null;
-        }
+    @Transactional
+    public ConsoleCommandsDTO makeBet(ConsoleCommandsDTO input) {
+        Bet bet = addBetToHorse(
+                Integer.valueOf(input.getFirstArgument()),
+                Integer.valueOf(input.getSecondArgument())
+        );
+
+        moneyService.pay(bet);
+        return input;
+    }
+
+    private Bet addBetToHorse(Integer horseId, Integer value) {
+        Horse horse = horseRepository.findById(horseId)
+                .orElseThrow(() -> new IllegalStateException(INVALID_HORSE_NUMBER));
 
         Bet bet = new Bet();
         bet.setHorse(horse);

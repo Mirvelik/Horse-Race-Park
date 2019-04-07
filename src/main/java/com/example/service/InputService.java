@@ -41,20 +41,7 @@ public class InputService {
         }
 
         if (InputType.SET_BET.equals(inputType)) {
-
-            Bet bet = betService.addBet(
-                    Integer.valueOf(input.getFirstArgument()),
-                    Integer.valueOf(input.getSecondArgument())
-            );
-
-            if (bet != null) {
-                moneyService.pay(bet);
-            } else {
-                input.setError(true);
-                input.setErrorMsg(INVALID_HORSE_NUMBER);
-            }
-
-            return input;
+            return betService.makeBet(input);
         }
 
         input.setError(true);

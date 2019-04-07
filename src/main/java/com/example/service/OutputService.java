@@ -5,7 +5,6 @@ import com.example.dto.PayingDTO;
 import com.example.entity.Horse;
 import com.example.repository.HorseRepository;
 import com.example.repository.MoneyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -14,17 +13,15 @@ import static com.example.common.Messages.*;
 
 @Service
 public class OutputService {
-
     private final HorseRepository horseRepository;
     private final MoneyRepository moneyRepository;
 
-    @Autowired
     public OutputService(HorseRepository horseRepository, MoneyRepository moneyRepository) {
         this.horseRepository = horseRepository;
         this.moneyRepository = moneyRepository;
     }
 
-    public void printContent() {
+    public void printWelcomeInfo() {
         System.out.println(INVENTORY_LINE);
         moneyRepository.findAll().forEach(System.out::println);
 
@@ -33,13 +30,11 @@ public class OutputService {
     }
 
     public void printInfo(ConsoleCommandsDTO input) {
-
         if (input.isError()) {
             System.out.println(input.getErrorMsg() + input.getFirstArgument());
         }else{
-            printContent();
+            printWelcomeInfo();
         }
-
     }
 
     public void printPaying(PayingDTO payingDTO) {

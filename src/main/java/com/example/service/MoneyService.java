@@ -56,10 +56,8 @@ public class MoneyService {
 
     @Transactional
     public void pay(Bet bet) {
-        if (bet != null) {
-            Horse horse = horseRepository.getOne(bet.getHorse().getId());
-            pay(horse);
-            betRepository.delete(bet); //todo: delete this when run in PROD mode
-        }
+        Horse horse = horseRepository.getOne(bet.getHorse().getId());
+        pay(horse);
+        betRepository.delete(bet); //todo: delete this when run in PROD mode
     }
 }

@@ -32,6 +32,10 @@ public class Horse {
     public Horse() {
     }
 
+    public Horse(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
