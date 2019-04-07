@@ -29,11 +29,14 @@ public class ConsoleScanner {
     }
 
     public ConsoleCommandsDTO getNextUserInput() {
+        final String sourceValue = scanner.nextLine();
+        return Optional.ofNullable(sourceValue)
+                .map(input -> mapInputToConsoleCommandDTO(input.toUpperCase(), sourceValue))
+                .orElse(new ConsoleCommandsDTO(sourceValue, true, INVALID_COMMAND));
 
-        String sourceValue = scanner.nextLine();
-        String input = Optional.ofNullable(sourceValue).map(String::toUpperCase).orElse("");
+    }
 
-
+    private ConsoleCommandsDTO mapInputToConsoleCommandDTO(String input, String sourceValue){
         if (command.isQuit(input)) {
             return new ConsoleCommandsDTO(input, InputType.QUIT);
         }
@@ -61,4 +64,5 @@ public class ConsoleScanner {
 
         return new ConsoleCommandsDTO(sourceValue, true, INVALID_COMMAND);
     }
+
 }

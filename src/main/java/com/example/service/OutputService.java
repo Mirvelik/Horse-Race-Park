@@ -24,8 +24,7 @@ public class OutputService {
         this.moneyRepository = moneyRepository;
     }
 
-
-    public void printBaseInfo() {
+    public void printContent() {
         System.out.println(INVENTORY_LINE);
         moneyRepository.findAll().forEach(System.out::println);
 
@@ -33,24 +32,30 @@ public class OutputService {
         horseRepository.findAll().forEach(System.out::println);
     }
 
-    public void printError(ConsoleCommandsDTO input) {
-        System.out.println(input.getErrorMsg() + input.getFirstArgument());
-    }
+    public void printInfo(ConsoleCommandsDTO input) {
 
-
-    public void printPayingIsSuccess(PayingDTO payingDTO) {
-        System.out.println(PAYOUT + payingDTO.getHorseName() + "," + DOLLAR + payingDTO.getTotalSum());
-        System.out.println(DISPENSING_LINE);
-
-        Map<Integer, Integer> bills = payingDTO.getBills();
-
-        for (Map.Entry<Integer, Integer> entry : bills.entrySet()) {
-            System.out.println(DOLLAR + entry.getKey() + ": " + entry.getValue());
+        if (input.isError()) {
+            System.out.println(input.getErrorMsg() + input.getFirstArgument());
+        }else{
+            printContent();
         }
+
     }
 
-    public void printPayingIsFail(PayingDTO payingDTO) {
-        System.out.println(INSUFFICIENT_FUNDS + DOLLAR + payingDTO.getTotalSum());
+    public void printPaying(PayingDTO payingDTO) {
+        if (payingDTO.isSuccess()) {
+            System.out.println(PAYOUT + payingDTO.getHorseName() + "," + DOLLAR + payingDTO.getTotalSum());
+            System.out.println(DISPENSING_LINE);
+
+            Map<Integer, Integer> bills = payingDTO.getBills();
+
+            for (Map.Entry<Integer, Integer> entry : bills.entrySet()) {
+                System.out.println(DOLLAR + entry.getKey() + ": " + entry.getValue());
+            }
+
+        } else {
+            System.out.println(INSUFFICIENT_FUNDS + DOLLAR + payingDTO.getTotalSum());
+        }
     }
 
     public void printNoPayout(Horse horse) {

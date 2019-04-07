@@ -15,6 +15,9 @@ public class ConsoleCommandsDTO {
     private boolean isError;
     private String errorMsg;
 
+    public ConsoleCommandsDTO() {
+    }
+
     public ConsoleCommandsDTO(String firstArgument, InputType type) {
         this.firstArgument = firstArgument;
         this.type = type;

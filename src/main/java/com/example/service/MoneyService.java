@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.dto.PayingDTO;
 import com.example.entity.Bet;
 import com.example.entity.Horse;
 import com.example.entity.Money;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
-import java.util.List;
 
 @Service
 public class MoneyService {
@@ -47,19 +45,10 @@ public class MoneyService {
     public void pay(Horse horse) {
 
         if (horse.getIsWin()) {
-
-            List<Bet> bets = horse.getBets();
-
-            for (Bet bet : bets) {
-                PayingDTO payingDTO = betService.payByBet(bet);
-
-                if (payingDTO.isSuccess()) {
-                    outputService.printPayingIsSuccess(payingDTO);
-                } else {
-                    outputService.printPayingIsFail(payingDTO);
-                }
-            }
-
+            horse.getBets()
+                    .stream()
+                    .map(betService::payByBet)
+                    .forEach(outputService::printPaying);
         } else {
             outputService.printNoPayout(horse);
         }

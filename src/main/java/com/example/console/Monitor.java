@@ -25,20 +25,14 @@ public class Monitor implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+        outputService.printContent();
+        processUserInput(scanner.getNextUserInput());
+    }
 
-        outputService.printBaseInfo();
-        ConsoleCommandsDTO input = scanner.getNextUserInput();
+    private void processUserInput(ConsoleCommandsDTO input) {
 
         while (!InputType.QUIT.equals(input.getType())) {
-
-            input = inputService.apply(input);
-
-            if (input.isError())
-                outputService.printError(input);
-            else
-                outputService.printBaseInfo();
-
-
+            outputService.printInfo(inputService.apply(input));
             input = scanner.getNextUserInput();
         }
     }
