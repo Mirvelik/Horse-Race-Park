@@ -2,11 +2,9 @@ package com.example.service;
 
 import com.example.common.InputType;
 import com.example.dto.ConsoleCommandsDTO;
-import com.example.entity.Bet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.example.common.MessagesOfErrors.INVALID_HORSE_NUMBER;
 import static com.example.common.MessagesOfErrors.UNEXPECTED_ERROR;
 
 @Service

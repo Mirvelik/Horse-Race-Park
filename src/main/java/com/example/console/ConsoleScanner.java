@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 import static com.example.common.MessagesOfErrors.INVALID_BET;
 import static com.example.common.MessagesOfErrors.INVALID_COMMAND;
@@ -36,7 +37,7 @@ public class ConsoleScanner {
 
     }
 
-    private ConsoleCommandsDTO mapInputToConsoleCommandDTO(String input, String sourceValue){
+    private ConsoleCommandsDTO mapInputToConsoleCommandDTO(String input, String sourceValue) {
         if (command.isQuit(input)) {
             return new ConsoleCommandsDTO(input, InputType.QUIT);
         }
@@ -65,4 +66,7 @@ public class ConsoleScanner {
         return new ConsoleCommandsDTO(sourceValue, true, INVALID_COMMAND);
     }
 
+    private boolean isMatches(String input, Predicate<String> predicate) {
+        return predicate.test(input);
+    }
 }

@@ -6,5 +6,4 @@ public enum InputType {
     RESTOCK,
     SET_WIN,
     SET_BET
-    ;
 }

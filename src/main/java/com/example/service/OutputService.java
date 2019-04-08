@@ -32,7 +32,7 @@ public class OutputService {
     public void printInfo(ConsoleCommandsDTO input) {
         if (input.isError()) {
             System.out.println(input.getErrorMsg() + input.getFirstArgument());
-        }else{
+        } else {
             printWelcomeInfo();
         }
     }

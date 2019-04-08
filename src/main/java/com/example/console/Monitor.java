@@ -26,10 +26,11 @@ public class Monitor implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         outputService.printWelcomeInfo();
-        processUserInput(scanner.getNextUserInput());
+        processUserInput();
     }
 
-    private void processUserInput(ConsoleCommandsDTO input) {
+    private void processUserInput() {
+        ConsoleCommandsDTO input = scanner.getNextUserInput();
 
         while (!InputType.QUIT.equals(input.getType())) {
             outputService.printInfo(inputService.apply(input));

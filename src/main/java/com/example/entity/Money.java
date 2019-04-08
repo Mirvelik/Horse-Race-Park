@@ -6,8 +6,6 @@ import javax.validation.constraints.NotNull;
 import static com.example.common.Messages.DOLLAR;
 
 @Entity
-//@Getter
-//@Setter
 public class Money {
 
     @Id
